@@ -7,7 +7,7 @@ import os
 # We create the Flask app. The template_folder defaults to "templates" already,
 # but I put it here to be explicit. The same goes for "static", where we put all
 # our static assets (css, images, etc.):
-app = Flask(__name__, template_folder = "templates", static_folder="static")
+app = Flask(__name__, template_folder = 'templates', static_folder='static')
 
 # This loads the .env file which holds our environment variables! You will need to
 # create this file on every machine you want to run the app!
@@ -23,10 +23,15 @@ cnx = mysql.connector.connect(
     database = os.environ['MYSQL_DB']
 )
 
+
+@app.route('/')
+def home():
+    return render_template('home.html')
+
 # Flask gives us a variable, within get_customer function
 # called "customer_id", that contains a string which is
 # passed in this part of the PATH in a GET request.
-@app.route("/customers/<customer_id>", methods = ['GET'])
+@app.route('/customers/<customer_id>')
 def get_customer(customer_id):
 
     # opens cursor for use in this query
@@ -34,7 +39,7 @@ def get_customer(customer_id):
 
     # %s is for string interpolation, the mysql library will pass
     # the second parameter of execute as variables into this string
-    query = ('select * from customers WHERE CustomerID = %(id)s')
+    query = ('SELECT * FROM customers WHERE CustomerID = %(id)s')
     cursor.execute(query, { 'id': customer_id })
 
     # we get the first result of a query.
@@ -45,7 +50,7 @@ def get_customer(customer_id):
     # your development experience smoother, that way you know what's going
     # wrong!
     if not customer:
-        return make_response("Sorry we could not find that customer", 404)
+        return make_response('Sorry we could not find that customer', 404)
 
 
     # if we find a customer, we create a dictionary from the MySql Row.
@@ -58,7 +63,7 @@ def get_customer(customer_id):
     cursor.close()
 
     # let's render this into html!
-    return render_template('./base.html', name = customer_dict['ContactName'])
+    return render_template('customer.html', name = customer_dict['ContactName'])
 
     # We could instead return JSON if we wanted and let the CLIENT do the rendering!
     # return json.dumps(customer_dict)
@@ -66,6 +71,6 @@ def get_customer(customer_id):
 
 # This runs the flask app when 'python minimal.py' is run. By default,
 # we listen on port 5000, if no FLASK_PORT environment variable is set:
-if __name__ == "__main__":
+if __name__ == '__main__':
     port = os.environ.get('FLASK_PORT') or 5000
     app.run(port = port)

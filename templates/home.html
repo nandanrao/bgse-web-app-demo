@@ -1,0 +1,11 @@
+<!-- here we tell the render engine to put this into the block titled "content" in the parent "base.html" -->
+{% extends "base.html" %}
+{% block content %}
+<div>
+  <h1>Welcome! What customer do you want to say hello to?</h1>
+  <div>
+    <a href="/customers/bergs"> Da Bergs </a>
+    <a href="/customers/anatr"> Ana </a>
+  </div>
+</div>
+{% endblock %}
