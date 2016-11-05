@@ -2,7 +2,7 @@
 
 ## General
 
-I think this is a very simple template/boilerplate that will show you how you can create a simple web server, using languages and technologies you have already learned in class (Python, MySql). You will have all the power of python (including all data-sciency libraries), and you will have a development process
+I think this is a very simple template/boilerplate that will show you how you can create a simple web server, using languages and technologies you have already learned in class (Python, MySql). You will have all the power of python (including all data-sciency libraries), and you will have a development process that will be easy to collaborate, and the final deployment should be smooth and easy.
 
 Read through the code and the comments!
 
