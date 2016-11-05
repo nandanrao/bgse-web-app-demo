@@ -2,7 +2,15 @@
 
 ## General
 
+I think this is a very simple template/boilerplate that will show you how you can create a simple web server, using languages and technologies you have already learned in class (Python, MySql). You will have all the power of python (including all data-sciency libraries), and you will have a development process
+
 Read through the code and the comments!
+
+### Fork and Clone
+
+Fork this repo into a repo of your own! You can do this here on github, just press "fork" in the upper right hand corner.
+
+After you have forked the repo, you will be directed to your very own version of the repo, under your usernmame. You should then git clone that repo to your local machine.
 
 ## Setting up your database / environment variables
 
@@ -28,6 +36,7 @@ MYSQL_USERNAME=
 MYSQL_PASSWORD=
 MYSQL_HOST=
 MYSQL_DB=ecommerce
+FLASK_PORT=
 ```
 
 Now fill in the four variables with connection information needed for your MySQL database. You can leave a field blank if you want it to revert to the "default". For example, if you want it to connect to a MySql instance on the same machine as the Python app is running, you can leave MYSQL_HOST blank:
@@ -70,10 +79,14 @@ pip install -r requirements.txt
 Now that you have all the python libraries installed, you can run the app by typing:
 
 ```
-python minimal.py
+FLASK_APP="minimal.py" FLASK_DEBUG=1 flask run
 ```
 
 Now open your browser to [http://localhost:5000/customers/anatr](http://localhost:5000/customers/anatr)
+
+The command we ran sets two environment variables (FLASK_APP and FLASK_DEBUG) and then runs the command line tool "flask". This gives you the benefit of automatically reloading the server when you change your code, which is very nice for development.
+
+
 
 ## Templating
 
@@ -90,3 +103,20 @@ You now have an app which includes:
 * A full Python runtime where you can do anything in Python with the above to elements!
 
 You can import scipy, pandas, or any other python library you use for doing all your fancy data science, and use that to run functions, live, based on variables given to you by the user. It's easy!
+
+
+## Deploying to a server
+
+Running your app on your server should be simple and repeatable. If you are running your MySQL database on the same server, you will need to set that up first. Otherwise, the following steps should be all you need to do:
+
+* git clone your repo onto your server
+* create your .env file in the project root
+* set the FLASK_PORT variable to 80
+
+Now run:
+
+```
+python minimal.py
+```
+
+Make sure to setup your security group to expose port 80 (http) to the world. Your web app should now be available to everyone, just browse to the Public DNS of your server!

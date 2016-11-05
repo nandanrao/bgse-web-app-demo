@@ -4,10 +4,9 @@ import mysql.connector
 import json
 import os
 
-
 # We create the Flask app. The template_folder defaults to "templates" already,
 # but I put it here to be explicit:
-app = Flask("Minmal App", template_folder = "templates")
+app = Flask(__name__, template_folder = "templates")
 
 # This loads the .env file which holds our environment variables! You will need to
 # create this file on every machine you want to run the app!
@@ -64,8 +63,8 @@ def get_customer(customer_id):
     # return json.dumps(customer_dict)
 
 
-# we run the Flask app. By default, Flask creates a server and listens on
-# port 5000. We could change that if we needed by passing another port as
-# a parameter to the "run" command:
+# This runs the flask app when 'python minimal.py' is run. By default,
+# we listen on port 5000, if no FLASK_PORT environment variable is set:
 if __name__ == "__main__":
-    app.run()
+    port = os.environ.get('FLASK_PORT') or 5000
+    app.run(port = port)
