@@ -24,9 +24,31 @@ cnx = mysql.connector.connect(
 )
 
 
+# Here we declare how we want to handle all HTTPP requests to the "home" path:
 @app.route('/')
 def home():
-    return render_template('home.html')
+
+    # create cursor and execute query
+    cursor = cnx.cursor()
+    cursor.execute('SELECT ContactName, CustomerID FROM customers LIMIT 20')
+
+    # mysql interface, returns a list of tuples (each item in the list is a row,
+    # which is a tuple with the column values). In other worse:
+    # [ (Laurence Lebihan, BONAP), (Maria Anders, ALKFI), ...]
+    rows = cursor.fetchall()
+
+    # Let's transform the tuples into python dictionaries so we can easily
+    # access them by name later in our templates. We will just use the same
+    # column names from the database (retrieved with column_names) as keys:
+    # [ {'CustomerID': 'ALFKI', 'ContactName': 'Maria Anders'}, ...]
+    customers = [dict(zip(cursor.column_names, customer)) for customer in rows]
+
+    # we know longer need our database curser, so we close it.
+    cursor.close()
+
+    # render with a list of "customer" dictionaries to use in our template:
+    return render_template('home.html', customers = customers)
+
 
 # Flask gives us a variable, within get_customer function
 # called "customer_id", that contains a string which is
@@ -58,8 +80,6 @@ def get_customer(customer_id):
     # of needing to know the order of the columns. It also allows us to turn
     # the dictionary into JSON if we would rather send that:
     customer_dict = dict(zip(cursor.column_names, customer))
-
-    # we know longer need our database curser, so we close it.
     cursor.close()
 
     # let's render this into html!

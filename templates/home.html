@@ -4,8 +4,9 @@
 <div>
   <h1>Welcome! What customer do you want to say hello to?</h1>
   <div>
-    <a href="/customers/bergs"> Da Bergs </a>
-    <a href="/customers/anatr"> Ana </a>
+    {% for customer in customers %}
+    <a href="/customers/{{ customer.CustomerID }}"> {{ customer.ContactName }}</a>
+    {% endfor %}
   </div>
 </div>
 {% endblock %}
