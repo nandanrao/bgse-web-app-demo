@@ -5,8 +5,9 @@ import json
 import os
 
 # We create the Flask app. The template_folder defaults to "templates" already,
-# but I put it here to be explicit:
-app = Flask(__name__, template_folder = "templates")
+# but I put it here to be explicit. The same goes for "static", where we put all
+# our static assets (css, images, etc.):
+app = Flask(__name__, template_folder = "templates", static_folder="static")
 
 # This loads the .env file which holds our environment variables! You will need to
 # create this file on every machine you want to run the app!
@@ -57,7 +58,7 @@ def get_customer(customer_id):
     cursor.close()
 
     # let's render this into html!
-    return render_template('./mypage.html', name = customer_dict['ContactName'])
+    return render_template('./base.html', name = customer_dict['ContactName'])
 
     # We could instead return JSON if we wanted and let the CLIENT do the rendering!
     # return json.dumps(customer_dict)

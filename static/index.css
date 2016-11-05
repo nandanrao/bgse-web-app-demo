@@ -1,0 +1,13 @@
+/*
+Any CSS you want can be written (or compiled to) this file!
+*/
+
+body {
+  font-family: monospace;
+}
+
+h1 {
+  color: gray;
+  font-size: 3em;
+  font-weight: 900
+}
