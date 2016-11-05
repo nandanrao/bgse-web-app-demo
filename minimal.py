@@ -1,13 +1,27 @@
 from flask import Flask, request, render_template, make_response
+from dotenv import load_dotenv
 import mysql.connector
 import json
+import os
+
 
 # We create the Flask app. The template_folder defaults to "templates" already,
 # but I put it here to be explicit:
 app = Flask("Minmal App", template_folder = "templates")
 
-# This is how we connect using the python mysql connector:
-cnx = mysql.connector.connect(user='root', database='ecommerce')
+# This loads the .env file which holds our environment variables! You will need to
+# create this file on every machine you want to run the app!
+load_dotenv('./.env')
+
+# This is how we connect using the python mysql connector. Note that this
+# relies entirely on environment variables. If those environment variables are
+# not properly set, this will throw an exception!
+cnx = mysql.connector.connect(
+    user = os.environ['MYSQL_USERNAME'],
+    password = os.environ['MYSQL_PASSWORD'],
+    host = os.environ['MYSQL_HOST'],
+    database = os.environ['MYSQL_DB']
+)
 
 # Flask gives us a variable, within get_customer function
 # called "customer_id", that contains a string which is

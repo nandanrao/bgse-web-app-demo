@@ -4,6 +4,40 @@
 
 Read through the code and the comments!
 
+## Setting up your database / environment variables
+
+### Background
+Take a look at minimal.py, you will see where it connects to MySQL. Similar to connecting via Workbench, you need to tell the (python) mysql client WHERE to connect, WHAT database to use, and WHICH usernames/passwords to use to connect.
+
+Because this could be different on your local machine, on your server, and on your teammates machine, we put this information into what are called "environment variables". These are global variables running in the UNIX process, that any application can access.
+
+We use a pattern popularized by the application-hosting company Heroku, and put environment variables in a file called ".env". This file is kept our of source control (.gitignore), and must be created on every machine where the app will run.
+
+### Create your environment variables:
+
+Create a file called .env in the root of the project:
+
+```
+touch .env
+```
+
+Open your .env file, copy and paste the following text:
+
+```
+MYSQL_USERNAME=
+MYSQL_PASSWORD=
+MYSQL_HOST=
+MYSQL_DB=ecommerce
+```
+
+Now fill in the four variables with connection information needed for your MySQL database. You can leave a field blank if you want it to revert to the "default". For example, if you want it to connect to a MySql instance on the same machine as the Python app is running, you can leave MYSQL_HOST blank:
+
+```
+MYSQL_HOST=
+```
+
+And it will default to connecting via "localhost".
+
 
 ## Running the App
 
