@@ -91,10 +91,13 @@ Now open your browser to [http://localhost:5000/customers/anatr](http://localhos
 The command we ran sets two environment variables (FLASK_APP and FLASK_DEBUG) and then runs the command line tool "flask". This gives you the benefit of automatically reloading the server when you change your code, which is very nice for development.
 
 
-
 ## Templating
 
-Flask uses Jinja2 syntax for HTML templates. You can read more [here](http://flask.pocoo.org/docs/0.11/tutorial/templates/). Basic concept with an HTML template: you write everything that you know ahead of time in HTML, then include "placeholders" for dynamic content. The server then "renders" the template, which just fills in the dynamic content based on variables it recieves in code, and then it creates a string of pure HTML.
+Flask uses Jinja2 syntax for HTML templates. You can read more [here](http://flask.pocoo.org/docs/0.11/tutorial/templates/). Basic concept with an HTML template:
+
+* You write everything that is "static" (the same for every user) in HTML (with CSS and Javascript), just like you would with a simple web page.
+* In the HTML "templates" you include "placeholders" for dynamic content. In Jinja2, these looke like this: {{ name }}
+* Some library will then "render" the template. You give it the variables (name), and it puts those variables into the placeholders ({{ name }}). It then returns a string of pure HTML.
 
 Included in the code is a comment of how you can return pure JSON instead of HTML. Use this if you want to render the HTML in javascript in the browser.
 
