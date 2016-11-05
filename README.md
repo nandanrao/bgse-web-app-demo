@@ -86,7 +86,7 @@ Now that you have all the python libraries installed, you can run the app by typ
 FLASK_APP="minimal.py" FLASK_DEBUG=1 flask run
 ```
 
-Now open your browser to [http://localhost:5000/customers/anatr](http://localhost:5000)
+Now open your browser to [http://localhost:5000](http://localhost:5000)
 
 The command we ran sets two environment variables (FLASK_APP and FLASK_DEBUG) and then runs the command line tool "flask". This gives you the benefit of automatically reloading the server when you change your code, which is very nice for development.
 
