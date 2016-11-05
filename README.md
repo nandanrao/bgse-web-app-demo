@@ -10,7 +10,11 @@ Read through the code and the comments!
 
 Fork this repo into a repo of your own! You can do this here on github, just press "fork" in the upper right hand corner.
 
-After you have forked the repo, you will be directed to your very own version of the repo, under your usernmame. You should then git clone that repo to your local machine.
+After you have forked the repo, you will be directed to your very own version of the repo, under your usernmame. You should then git clone that repo to your local machine using something like the following command:
+
+```
+git clone https://github.com/<YOUR USERNAME>/bgse-web-app-demo.git
+```
 
 ## Setting up your database / environment variables
 
