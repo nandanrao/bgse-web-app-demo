@@ -80,3 +80,13 @@ Now open your browser to [http://localhost:5000/customers/anatr](http://localhos
 Flask uses Jinja2 syntax for HTML templates. You can read more [here](http://flask.pocoo.org/docs/0.11/tutorial/templates/). Basic concept with an HTML template: you write everything that you know ahead of time in HTML, then include "placeholders" for dynamic content. The server then "renders" the template, which just fills in the dynamic content based on variables it recieves in code, and then it creates a string of pure HTML.
 
 Included in the code is a comment of how you can return pure JSON instead of HTML. Use this if you want to render the HTML in javascript in the browser.
+
+## Data Science Shit
+
+You now have an app which includes:
+
+* A variable given to you by the user (customer id)
+* A database where you can run any SQL query you can imagine
+* A full Python runtime where you can do anything in Python with the above to elements!
+
+You can import scipy, pandas, or any other python library you use for doing all your fancy data science, and use that to run functions, live, based on variables given to you by the user. It's easy!
